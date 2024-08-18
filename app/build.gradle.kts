@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -9,7 +11,7 @@ plugins {
 android {
     namespace = "com.vsdhoni5034.fitme"
     compileSdk = 34
-
+    android.buildFeatures.buildConfig = true
     defaultConfig {
         applicationId = "com.vsdhoni5034.fitme"
         minSdk = 24
@@ -17,10 +19,30 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val keystoreFile = project.rootProject.file("local.properties")
+        val properties = Properties()
+        properties.load(keystoreFile.inputStream())
+
+        val applicationID = properties.getProperty("APPLICATION_ID") ?: ""
+        val applicationKey = properties.getProperty("APPLICATION_KEY") ?: ""
+
+        buildConfigField(
+            type = "String",
+            name = "APPLICATION_ID",
+            value = applicationID
+        )
+
+        buildConfigField(
+            type = "String",
+            name = "APPLICATION_KEY",
+            value = applicationKey
+        )
     }
 
     buildTypes {
@@ -73,7 +95,7 @@ dependencies {
     ksp(libs.hilt.android.compiler)
 
     //retrofit
-    implementation (libs.retrofit)
+    implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
     testImplementation(libs.junit)

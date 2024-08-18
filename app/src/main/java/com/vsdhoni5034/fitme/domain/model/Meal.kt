@@ -1,6 +1,7 @@
 package com.vsdhoni5034.fitme.domain.model
 
 data class Meal(
+    val mealTitle: String,
     val totalCalories: Double,
     val carbs: Double,
     val protein: Double,

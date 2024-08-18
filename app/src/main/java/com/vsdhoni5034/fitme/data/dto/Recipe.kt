@@ -60,6 +60,7 @@ data class Recipe(
 
 fun Recipe.toMeal(): Meal {
     return Meal(
+        mealTitle = label,
         totalCalories = calories,
         carbs = totalNutrients.cHOCDF.quantity,
         fat = totalNutrients.fAT.quantity,

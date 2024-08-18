@@ -1,4 +1,4 @@
-package com.vsdhoni5034.fitme.ui.theme
+package com.vsdhoni5034.fitme.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
